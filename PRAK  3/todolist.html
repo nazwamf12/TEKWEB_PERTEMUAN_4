@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do App</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #fff0f6;
+      color: #333;
+    }
+
+    .container {
+      width: 350px;
+      margin: 60px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff69b4;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ffc1dc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #ff69b4;
+      box-shadow: 0 0 5px rgba(255, 105, 180, 0.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #e0559e;
+    }
+
+    #taskList {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+
+    #taskList li {
+      padding: 10px;
+      border-bottom: 1px solid #ffd6ea;
+      background-color: #fff7fa;
+      border-radius: 5px;
+      margin-bottom: 8px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    #taskList li:hover {
+      background-color: #ffe0ef;
+    }
+
+    #taskList li.completed {
+      text-decoration: line-through;
+      color: gray;
+      background-color: #ffd9ec;
+    }
+
+    .close {
+      color: #ff4b4b;
+      float: right;
+      font-weight: bold;
+      cursor: pointer;
+      padding-left: 10px;
+      transition: 0.2s;
+    }
+
+    .close:hover {
+      color: #ff0000;
+    }
+
+    .edit-input {
+      width: 90%;
+      border: 1px solid #ff69b4;
+      border-radius: 5px;
+      padding: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      color: #333;
+      outline: none;
+      background-color: #fff0f8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Wawa To-Do List </h2>
+    <input type="text" id="newTask" placeholder="Add a new task...">
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById("newTask");
+      const taskValue = taskInput.value.trim();
+
+      if (taskValue === "") return;
+
+      const li = document.createElement("li");
+      li.textContent = taskValue;
+
+      li.onclick = function() {
+        li.classList.toggle("completed");
+      };
+
+      li.ondblclick = function() {
+        editTaskInline(li);
+      };
+
+      const span = document.createElement("span");
+      span.textContent = "×";
+      span.className = "close";
+      span.onclick = function(event) {
+        event.stopPropagation(); 
+        deleteTask(this);
+      };
+
+      li.appendChild(span);
+      document.getElementById("taskList").appendChild(li);
+      taskInput.value = "";
+    }
+
+    function deleteTask(element) {
+      const li = element.parentElement;
+      li.remove();
+    }
+
+    function editTaskInline(li) {
+      const oldText = li.firstChild.textContent;
+      li.innerHTML = ""; 
+
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = oldText;
+      input.className = "edit-input";
+      li.appendChild(input);
+      input.focus();
+
+      input.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") saveEdit(li, input);
+      });
+
+      input.addEventListener("blur", function() {
+        saveEdit(li, input);
+      });
+    }
+
+    function saveEdit(li, input) {
+      const newText = input.value.trim();
+      if (newText === "") {
+        li.remove();
+        return;
+      }
+
+      li.innerHTML = newText;
+
+      const span = document.createElement("span");
+      span.textContent = "×";
+      span.className = "close";
+      span.onclick = function(event) {
+        event.stopPropagation();
+        deleteTask(this);
+      };
+
+      li.appendChild(span);
+
+      li.onclick = function() {
+        li.classList.toggle("completed");
+      };
+
+      li.ondblclick = function() {
+        editTaskInline(li);
+      };
+    }
+  </script>
+
+</body>
+</html>

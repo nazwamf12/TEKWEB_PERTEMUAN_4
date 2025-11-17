@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do App</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #fff0f6;
+      color: #333;
+    }
+
+    .container {
+      width: 350px;
+      margin: 60px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #e75480;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"]:focus {
+      border-color: #e75480;
+      box-shadow: 0 0 5px rgba(128, 33, 192, 0.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #e75480;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #e75480;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>RANDOM FACT</h2>
+    <button onclick="addTask()">get another random fact</button>
+    <p class="text"> pengetahuan baru apa yang bisa kita dapatkan?</p>
+    <ul id="taskList"></ul>
+  </div>
+<script>
+  function addTask() {
+    const facts = [
+       "Lautan menutupi sekitar 71% permukaan Bumi.",
+    "Gunung Everest adalah gunung tertinggi di dunia dengan ketinggian 8.848 meter.",
+    "Otak manusia mengandung sekitar 86 miliar neuron.",
+    "Kucing bisa mengeluarkan lebih dari 100 jenis suara.",
+    "Madu tidak akan basi meskipun disimpan selama ribuan tahun.",
+    "Bulan tidak memiliki atmosfer, jadi tidak ada suara yang bisa terdengar di sana.",
+    "Air bisa berada dalam tiga wujud sekaligus: padat, cair, dan gas.",
+    "Tubuh manusia terdiri dari sekitar 60% air.",
+    "Seekor siput bisa tidur selama tiga tahun.",
+    "Pelangi memiliki tujuh warna utama.",
+    "Jantung manusia berdetak sekitar 100.000 kali per hari.",
+    "Kelelawar adalah satu-satunya mamalia yang bisa terbang.",
+    "Hiu tidak memiliki tulang, hanya tulang rawan.",
+    "Manusia berbagi 50% DNA dengan pisang.",
+    "Lebah madu berkomunikasi dengan menari.",
+    "Petir bisa lima kali lebih panas dari permukaan matahari.",
+    "Bumi berputar pada porosnya setiap 23 jam 56 menit dan 4 detik.",
+    "Gajah tidak bisa melompat.",
+    "Air laut berwarna biru karena menyerap cahaya merah lebih banyak.",
+    "Paus biru adalah hewan terbesar di planet ini.",
+    "Kupu-kupu mencicipi makanan dengan kakinya.",
+    "Ada lebih banyak bintang di alam semesta daripada butiran pasir di Bumi.",
+    "Kucing tidur sekitar 70% dari hidupnya.",
+    "Rata-rata manusia memiliki 5 juta folikel rambut.",
+    "Pisang termasuk jenis buah beri.",
+    "Jerapah hanya tidur sekitar 30 menit sehari.",
+    "Bumi bukan bulat sempurna, tetapi agak gepeng di kutub.",
+    "Cokelat bisa beracun bagi anjing.",
+    "Lidah manusia memiliki sekitar 10.000 reseptor rasa.",
+    "Tulang paha lebih kuat dari beton.",
+    "Burung kolibri bisa terbang mundur.",
+    "Tawon dapat mengenali wajah manusia.",
+    "Antartika adalah tempat terkering di dunia.",
+    "Hujan di Venus terdiri dari asam sulfat.",
+    "Bayi memiliki lebih banyak tulang daripada orang dewasa.",
+    "Seekor katak bisa membeku di musim dingin dan hidup kembali saat mencair.",
+    "Manusia tidak bisa bersin dengan mata terbuka.",
+    "Ada lebih banyak ayam di dunia daripada manusia.",
+    "Garis khatulistiwa memiliki panjang sekitar 40.075 kilometer.",
+    "Rekor dunia untuk tidur terlama tanpa terbangun adalah 11 hari.",
+    "Burung unta memiliki mata lebih besar daripada otaknya.",
+    "Rata-rata orang tertawa 13 kali per hari.",
+    "Pisang mengandung zat yang bisa membuatmu lebih bahagia, yaitu triptofan.",
+    "Semut tidak punya paru-paru.",
+    "Hewan pertama yang dikirim ke luar angkasa adalah seekor anjing bernama Laika.",
+    "Gunung berapi terbesar di tata surya adalah Olympus Mons di Mars.",
+    "Otak manusia tetap aktif bahkan saat kita tidur.",
+    "Bumi kehilangan sekitar 40.000 ton debu kosmik setiap tahun.",
+    "Tulang manusia paling kecil ada di telinga.",
+    "Pelangi ganda terjadi ketika cahaya terpantul dua kali di dalam tetesan air."
+    ];
+    const randomFact = facts[Math.floor(Math.random() * facts.length)];
+    const li = document.createElement("li");
+    li.textContent = randomFact;
+    document.querySelector(".text").innerText = li.textContent;
+    // document.getElementById("taskList").appendChild(li);
+  }
+</script>
+
+</body>
+</html>
